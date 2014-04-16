@@ -41,7 +41,18 @@ MongoDatabase.prototype.model = function() {
         }
     }
     logger.debug('create Model: ', arguments[0]);
-    return this.connection.model.apply(this.connection, arguments);
+    var modelName = arguments[0]
+    var model = this.connection.model.apply(this.connection, arguments);
+    if (process.env.ENV == 'test') {
+        model.remove({}, function(err) {
+            if(err) {
+                logger.error('clear db failed: ', modelName, err);
+                throw err;
+            }
+            logger.info('db cleared for test: ', modelName);
+        });
+    }
+    return model;
 }
 
 exports = module.exports = function(name, opts) {
