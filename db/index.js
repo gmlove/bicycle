@@ -5,6 +5,7 @@ var backends = {
 };
 
 exports = module.exports = {
-    backends: backends
+    backends: backends,
+    mongoose: require('mongoose')
 };
 
