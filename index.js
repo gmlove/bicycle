@@ -161,6 +161,10 @@ module.exports = {
     set: set,
     config: config,
     route: route,
+    bicycle: module.exports,
+    core: {
+        workflowFunc: require('./core/workflow'),
+    }
 }
 
 

@@ -22,3 +22,4 @@ exports.dbStorage = {
     }
 };
 exports.appName = 'bicycle';
+exports.version = '0.0.1';

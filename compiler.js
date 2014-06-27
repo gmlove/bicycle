@@ -176,7 +176,7 @@ function compile(opts) {
 
     //replace template data and generate html files
     var keywords = ['__relative_to__', '__base_view_path__', '__base_data_path__', '__compiled_dust_files__'];
-    var html_template = fs.readFileSync('/Users/gmliao/dev/projects/streamer-era/car-reco/bicycle-admin/public/views/template.html').toString();
+    var html_template = fs.readFileSync(templateRealpath).toString();
     htmlfiles.forEach(function(file) {
         var filepath = dirname + file;
         var dustobj = dustdict[filepath + '.dust'];
