@@ -24,6 +24,11 @@ exports = module.exports = function(req, res) {
         return workflow.emit('response');
     });
 
+    workflow.on('error', function(errmsg) {
+        workflow.outcome.errors.push(errmsg);
+        return workflow.emit('response');
+    });
+
     workflow.on('response', function() {
         workflow.outcome.success = !workflow.hasErrors();
         res.send(workflow.outcome);
