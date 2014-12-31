@@ -15,6 +15,9 @@
     "mongoose": "^3.8.8",
     "jade": "^1.3.1"
   },
+  "bin": {
+    "bicycle": "./bin/bicycle.js"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.4.0",
