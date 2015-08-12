@@ -7,7 +7,7 @@ var base = require('./base.js'),
     logger = require('../logger').getLogger('bicycle', __filename);
 
 function MongoDatabase(name, opts) {
-	base.BaseDatabase.call(name);
+	base.BaseDatabase.call(this, name);
 	this.opts = opts;
     if(process.env.ENV == 'test'){
         opts.uri = opts.uri + '_test';

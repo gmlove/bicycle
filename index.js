@@ -11,7 +11,7 @@ var appModels = {};
 var logger = console;
 var expressapp = null;
 
-//Load app configurations, and merge into config bject.
+//Load app configurations, and merge into config object.
 function configApp(appConfig) {
     for (var i in appConfig) {
         if (appConfig.hasOwnProperty(i)) {
@@ -130,7 +130,7 @@ function set(appName, name, value) {
         if (_name == value) {
             throw new Error('You can not set a readonly attibute ' + _name);
         }
-    })
+    });
 
     appMap[_appname][_name] = _value;
     for (var i = apps.length - 1; i >= 0; i--) {
