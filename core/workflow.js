@@ -1,5 +1,7 @@
 'use strict';
 
+var logger = require('../logger').getLogger('bicycle', __filename);
+
 exports = module.exports = function(req, res) {
     var workflow = new (require('events').EventEmitter)();
 
@@ -20,16 +22,19 @@ exports = module.exports = function(req, res) {
     };
 
     workflow.on('exception', function(err) {
+        logger.error('exception occured: ', err);
         workflow.outcome.errors.push('Exception: '+ err);
         return workflow.emit('response');
     });
 
     workflow.on('error', function(errmsg) {
+        logger.info('error occured: ', err);
         workflow.outcome.errors.push(errmsg);
         return workflow.emit('response');
     });
 
     workflow.on('response', function() {
+        logger.info('response: %j', workflow.outcome);
         workflow.outcome.success = !workflow.hasErrors();
         res.send(workflow.outcome);
     });
