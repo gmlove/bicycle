@@ -14,7 +14,7 @@ function MongoDatabase(name, opts) {
     }
     logger.debug('create mongodb connection: ', opts.uri);
 	this.connection = mongoose.createConnection(opts.uri);
-	var errorHandler = opts.error || console.error.bind(console, 'mongoose connection error: ');
+	var errorHandler = opts.error || logger.error.bind(logger, 'mongoose connection error: ');
 	this.connection.on('error', errorHandler);
 }
 
@@ -41,7 +41,7 @@ MongoDatabase.prototype.model = function() {
         }
     }
     logger.debug('create Model: ', arguments[0]);
-    var modelName = arguments[0]
+    var modelName = arguments[0];
     var model = this.connection.model.apply(this.connection, arguments);
     if (process.env.ENV == 'test') {
         model.remove({}, function(err) {
